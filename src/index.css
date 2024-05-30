@@ -4,7 +4,6 @@
 
 :root {
   line-height: 1.5;
-  font-weight: 400;
   font-family: "Montserrat";
 
   /* color-scheme: light dark;
@@ -20,8 +19,11 @@
 
 body {
   margin: 0;
+  width: 1440px;
   min-width: 320px;
   min-height: 100vh;
+  background: rgba(255, 255, 255, 1);
+
 }
 
 
