@@ -11,6 +11,7 @@ import cartIcon from "../assets/navbarImages/cartIcon.svg";
 import searchIcon from "../assets/navbarImages/searchIcon.svg";
 import likeIcon from "../assets/navbarImages/likeIcon.svg";
 import "../styles/NavBar.css";
+
 function NavBar() {
   return (
     <header className="header">
