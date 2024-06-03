@@ -20,7 +20,7 @@ import arrownextIcon from "../assets/homepageImages/arrownextIcon.svg";
 import "../styles/Home.css";
 import "../utilities/currency";
 import { dollar } from "../utilities/currency";
-import { useGetProductsQuery } from "../api/product";
+import { useGetProductsQuery } from "../api/endpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { loadLessProducts, loadMoreProducts } from "../reduxStore/count";
 
@@ -53,7 +53,7 @@ function Home() {
         </div>
         <div className="photo-2-3-4">
           <div className="photo">
-            <img src={photo2} alt="Photo 2" />
+            <img src={photo2} alt="Photo 2" className="second-photo" />
             <h6 className="five-items">5 Items</h6>
             <h3 className="furniture">Furniture</h3>
             <h6 className="read-more">Read More</h6>
@@ -63,6 +63,7 @@ function Home() {
               <img
                 src={photo3}
                 alt="Photo 3"
+                className="third-photo"
                 style={{ marginRight: "15px", marginTop: "10px" }}
               />
               <h6 className="five-items">5 Items</h6>
@@ -73,6 +74,7 @@ function Home() {
               <img
                 src={photo4}
                 alt="Photo 4"
+                className="fourth-photo"
                 style={{ marginRight: "15px", marginTop: "10px" }}
               />
               <h6 className="five-items">5 Items</h6>
@@ -92,7 +94,9 @@ function Home() {
           {items ? (
             items.map((item) => {
               return (
-                <div key={item.id} className="product">
+                <div key={item.id} className="product"
+                // onClick={() => handleClick(item.id)}
+                >
                   <img
                     src={item.thumbnail}
                     alt={item.title}
@@ -259,11 +263,11 @@ function Home() {
           <h6 className="user-job">Designer</h6>
         </div>
         <div className="home-section-5-right">
-          <img src={userphotos} />
+          <img src={userphotos} className="user-photos"/>
         </div>
       </section>
       <section className="home-section-6">
-        <img style={{ width: "100%" }} src={photo8} alt="Photo 8" />
+        <img style={{ width: "100%" }} src={photo8} alt="Photo 8" className="last-photo" />
         <div className="home-section-6-writeup">
           <h6>Designing Better Experience</h6>
           <h2>Problems trying to resolve the conflict between </h2>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import callIcon from "../assets/navbarImages/callIcon.svg";
 import messageIcon from "../assets/navbarImages/messageIcon.svg";
 import instagramIcon from "../assets/navbarImages/instagramIcon.svg";
@@ -10,12 +10,20 @@ import loginIcon from "../assets/navbarImages/loginIcon.svg";
 import cartIcon from "../assets/navbarImages/cartIcon.svg";
 import searchIcon from "../assets/navbarImages/searchIcon.svg";
 import likeIcon from "../assets/navbarImages/likeIcon.svg";
+import navbaroptionsicon from "../assets/navbarImages/navbaroptionsIcon.svg"
 import "../styles/NavBar.css";
 
 function NavBar() {
+
+  const [menu, setMenu] = useState(false)
+
+  const handleMenu = () =>{
+    setMenu(!menu)
+  }
+
   return (
-    <header className="header">
-      <nav>
+    <header className="header-main">
+      <nav className="header">
         <div className="upper-navbar">
           <ul className="uppernavbar-list1">
             <li style={{ display: "flex" }}>
@@ -65,25 +73,42 @@ function NavBar() {
             <li>Pages</li>
           </ul>
           <ul className="lower-navbar-list2">
-            <li>
+            <li className="login-register">
               <img src={loginIcon} style={{ marginRight: "5px" }} />
               Login / Register
             </li>
             <li>
-              <img src={searchIcon} />
+              <img src={searchIcon} className="search-icon" />
             </li>
             <li style={{ display: "flex", columnGap: "3px" }}>
-              <img src={cartIcon} />
-              <span>1</span>
+              <img src={cartIcon} className="cart-icon" />
+              <span className="cart-counter">1</span>
             </li>
-            <li style={{ display: "flex", columnGap: "3px" }}>
+            <li
+              className="like-icon"
+            >
               <img src={likeIcon} />
               <span>1</span>
             </li>
+            <li
+              className="navbar-options-icon"
+              onClick={handleMenu}
+            >
+              <img src={navbaroptionsicon} />
+             
+            </li>
           </ul>
-          <div></div>
+          
         </div>
       </nav>
+      {menu && 
+          <div className="navbar-options">
+                <div>Home</div>
+                <div>Product</div>
+                <div>Pricing</div>
+                <div>Contact</div>
+          </div>
+          }
     </header>
   );
 }

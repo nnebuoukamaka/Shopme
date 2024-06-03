@@ -1,17 +1,16 @@
 
 import { configureStore } from '@reduxjs/toolkit'
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { productAPI } from "../api/product";
+import { setupListeners } from "@reduxjs/toolkit/query"
+import { endpointsAPI } from '../api/endpoints.js'
 import counterReducer from './count'
-// import { apiSlice } from "../api/apiSlice";
 
 export const store = configureStore({
     reducer:{
-        [productAPI.reducerPath]: productAPI.reducer,
+        [endpointsAPI.reducerPath]: endpointsAPI.reducer,
         counter: counterReducer
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(productAPI.middleware),
+        getDefaultMiddleware().concat(endpointsAPI.middleware),
     
 })
 
