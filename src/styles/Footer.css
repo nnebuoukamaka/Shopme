@@ -12,11 +12,20 @@ letter-spacing: 0.10000000149011612px;
     justify-content: space-around;
     background: rgba(250, 250, 250, 1);
 
+    @media screen and (max-width:639px) {
+        display: grid;
+        justify-content: left;
+      }
+
     
 }
 .upper-footer h3{
 font-size: 24px;
 line-height: 32px;
+
+@media screen and (max-width:639px) {
+margin-left: 40px;
+  }
 
 }
 .upper-footer-list {
@@ -25,6 +34,8 @@ line-height: 32px;
     align-items: center;
     column-gap: 20px;
     margin-top: 25px;
+
+    
 }
 
 .lower-footer{
@@ -32,6 +43,12 @@ line-height: 32px;
     align-items: center;
     justify-content: center;
     padding-left: 30px;
+
+    @media screen and (max-width:639px) {
+        display: grid;
+        justify-content: start;
+
+      }
     
 }
 .lower-footer li{
@@ -51,6 +68,10 @@ margin-bottom: -1px;
 }
 .lower-footer-column5{
     margin-top: -64px;
+    @media screen and (max-width:639px) {
+    margin-top: 0px;
+      }
+    
 }
 
 .input{
@@ -93,5 +114,10 @@ font-size: 14px;
 letter-spacing: 0.20000000298023224px;
 text-align: start;
 padding-left: 290px;
+
+@media screen and (max-width:639px) {
+    text-align: start;
+    padding-left: 70px;
+  }
 }
 

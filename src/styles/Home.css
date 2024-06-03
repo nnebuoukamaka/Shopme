@@ -1,6 +1,10 @@
 .home {
   width: 100%;
-  height: 4969px;
+  height: auto;
+  @media screen and (max-width: 639px) {
+    /* display: grid; */
+    height: auto;
+  }
 }
 .home-section-1 {
   display: flex;
@@ -8,8 +12,9 @@
   align-items: center;
   height: 616px;
 
-  @media screen  and (max-width:639px) {
+  @media screen and (max-width: 639px) {
     display: grid;
+    height: auto;
   }
 }
 .photo {
@@ -17,9 +22,15 @@
 }
 
 .responsive-img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+
+  @media screen and (max-width: 639px) {
+    width: 332px;
+    height: 300px;
+    margin-bottom: 10px;
   }
+}
 
 .five-items {
   font-size: 14px;
@@ -57,15 +68,37 @@
 .photo-3-4 {
   display: flex;
 
-  @media screen and (max-width:639px) {
+  @media screen and (max-width: 639px) {
     display: grid;
   }
 }
 
 .photo-2-3-4 {
   margin-left: 10px !important;
+
+  @media screen and (max-width: 639px) {
+    margin: 0px !important;
+  }
 }
 
+.second-photo {
+  @media screen and (max-width: 639px) {
+    width: 332px;
+    height: 300px;
+  }
+}
+.third-photo {
+  @media screen and (max-width: 639px) {
+    width: 332px;
+    height: 300px;
+  }
+}
+.fourth-photo {
+  @media screen and (max-width: 639px) {
+    width: 332px;
+    height: 300px;
+  }
+}
 .home-section-2 {
   height: auto;
   display: flex;
@@ -74,20 +107,26 @@
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width:639px) {
+  @media screen and (max-width: 639px) {
     display: grid;
     text-align: center;
+    height: auto;
+  }
+}
+.home-section-2-top {
+  @media screen and (max-width: 639px) {
+    
   }
 }
 .home-section-2-top h4 {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
-    letter-spacing: 0.20000000298023224px;
-    color: rgba(115, 115, 115, 1);
-    text-align: center;
-    margin-bottom: -25px;
-  }
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.20000000298023224px;
+  color: rgba(115, 115, 115, 1);
+  text-align: center;
+  margin-bottom: -25px;
+}
 
 .home-section-2-top h3 {
   font-size: 24px;
@@ -108,24 +147,29 @@
   color: rgba(115, 115, 115, 1);
 }
 
-.home-section-2-products{
+.home-section-2-products {
   width: 1092px;
-  height:auto;
+  height: auto;
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  column-gap: -5px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
   row-gap: 20px;
+
+  @media screen and (max-width: 639px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.product{
+.product {
   width: 183px;
   height: 400px;
   text-align: center;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  border:none
+  border: none;
+  cursor: pointer;
 }
 
-.product h5{
+.product h5 {
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
@@ -134,30 +178,34 @@
   color: rgba(37, 43, 66, 1);
 }
 
-.product h6{
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 0.20000000298023224px;
-    text-align: center;
-    color: rgba(115, 115, 115, 1);
-    margin-top: -20px;
-    margin-bottom: -3px;
-
+.product h6 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.20000000298023224px;
+  text-align: center;
+  color: rgba(115, 115, 115, 1);
+  margin-top: -20px;
+  margin-bottom: -3px;
 }
 
-.product-price{
-font-size: 16px;
-font-weight: 700;
-line-height: 24px;
-letter-spacing: 0.10000000149011612px;
-text-align: center;
-color: rgba(35, 133, 109, 1);
+.product-price {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.10000000149011612px;
+  text-align: center;
+  color: rgba(35, 133, 109, 1);
 }
 
-.load-btns{
+.load-btns {
   display: flex;
   gap: 40px;
+
+  @media screen and (max-width: 639px) {
+    flex-direction: column;
+    gap: 0px;
+  }
 }
 
 .home-section-2 button {
@@ -169,6 +217,11 @@ color: rgba(35, 133, 109, 1);
   border-radius: 5px;
   margin-top: 20px;
   cursor: pointer;
+
+  @media screen and (max-width: 639px) {
+    padding: 0px 0px 0px 0px;
+    /* width: 261px;  */
+  }
 }
 
 .home-section-3-main {
@@ -176,7 +229,7 @@ color: rgba(35, 133, 109, 1);
   align-items: center;
   justify-content: space-between;
 
-  @media screen and (max-width:639px) {
+  @media screen and (max-width: 639px) {
     display: grid;
   }
 }
@@ -235,7 +288,7 @@ color: rgba(35, 133, 109, 1);
   align-items: center;
   column-gap: 5px;
 
-  @media screen and (max-width:639px) {
+  @media screen and (max-width: 639px) {
     display: grid;
   }
 }
@@ -329,7 +382,7 @@ color: rgba(35, 133, 109, 1);
   display: flex;
   justify-content: space-evenly;
 
-  @media screen and (max-width:639px){
+  @media screen and (max-width: 639px) {
     display: grid;
   }
 }
@@ -372,6 +425,10 @@ color: rgba(35, 133, 109, 1);
   color: rgba(115, 115, 115, 1);
   text-align: center;
   margin-bottom: -10px;
+
+  @media screen and (max-width: 639px) {
+    margin-bottom: 0px;
+  }
 }
 #user-name {
   font-size: 14px;
@@ -392,13 +449,26 @@ color: rgba(35, 133, 109, 1);
   margin-top: 4px;
 }
 
+.user-photos {
+  @media screen and (max-width: 639px) {
+    /* width: 364px;  */
+    margin-top: 10px;
+  }
+}
+
 .home-section-6 {
   position: relative;
   width: 100%;
   background-size: contain;
 
-  @media screen and (max-width:639px){
-    width: 100%;
+  @media screen and (max-width: 639px) {
+    /* width: 100%; */
+  }
+}
+.last-photo {
+  @media screen and (max-width: 639px) {
+    width: 414px;
+    height: 712px;
   }
 }
 
@@ -411,6 +481,12 @@ color: rgba(35, 133, 109, 1);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 639px) {
+    width: 358px;
+    top: 0px;
+    left: 0px;
+  }
 }
 
 .home-section-6-writeup h6 {
@@ -430,6 +506,10 @@ color: rgba(35, 133, 109, 1);
   letter-spacing: 0.20000000298023224px;
   text-align: center;
   color: rgba(37, 43, 66, 1);
+
+  @media screen and (max-width: 639px) {
+    width: 340px;
+  }
 }
 
 .home-section-6-writeup p {
@@ -440,6 +520,10 @@ color: rgba(35, 133, 109, 1);
   letter-spacing: 0.20000000298023224px;
   text-align: center;
   color: rgba(115, 115, 115, 1);
+
+  @media screen and (max-width: 639px) {
+    width: 287px;
+  }
 }
 
 .price {
@@ -449,6 +533,10 @@ color: rgba(35, 133, 109, 1);
   line-height: 32px;
   letter-spacing: 0.10000000149011612px;
   margin-bottom: 20px;
+
+  @media screen and (max-width: 639px) {
+    width: 77px;
+  }
 }
 
 .home-section-6-writeup button {
