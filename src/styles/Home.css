@@ -15,7 +15,6 @@
   @media screen and (max-width: 639px) {
     display: grid;
     height: auto;
-    border: 1px solid red;
   }
 }
 .photo {
@@ -109,19 +108,14 @@
   align-items: center;
 
   @media screen and (max-width: 639px) {
-    /* width: 100%; */
     display: grid;
     text-align: center;
     height: auto;
-    border: 1px solid green;
   }
 }
 .home-section-2-top {
   @media screen and (max-width: 639px) {
-    /* width: 100%; */
-    border: 1px solid;
-    /* display: grid; */
-    /* text-align: center; */
+    
   }
 }
 .home-section-2-top h4 {
@@ -490,7 +484,6 @@
 
   @media screen and (max-width: 639px) {
     width: 358px;
-    border: 1px solid;
     top: 0px;
     left: 0px;
   }

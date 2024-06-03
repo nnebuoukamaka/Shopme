@@ -1,7 +1,5 @@
 .header-main{
     @media screen and (max-width: 639px) {
-        /* overflow-x: hidden;  */
-        border: 1px solid;
         height: auto;
         width: 100%;
       }
@@ -16,8 +14,6 @@
   letter-spacing: 0.20000000298023224px;
 
   @media screen and (max-width: 639px) {
-    /* overflow-x: hidden;  */
-    border: 1px solid;
     height: 58px;
     width: 100%;
     margin-bottom: 30px;
@@ -70,9 +66,8 @@
 
   @media screen and (max-width: 639px) {
     width: 100%;
-    border: 1px solid blue;
     padding-left: 0px;
-    display: flex3;
+    display: flex;
     align-items: center;
     justify-content: space-around;
 
