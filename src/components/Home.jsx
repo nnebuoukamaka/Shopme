@@ -121,7 +121,7 @@ function Home() {
          </div>
       </section>
       {/* this is home section 3, but has similar properties with home section 2, hence the same className */}
-      <section className="home-section-2">
+      <section className="home-section-2" id="home-section-3">
         <div className="home-section-2-top">
           <h4>Featured Products</h4>
           <h3>THE BEST SERVICES</h3>
