@@ -18,29 +18,18 @@ import clockIcon from "../assets/homepageImages/clockIcon.svg";
 import commentIcon from "../assets/homepageImages/commentIcon.svg";
 import arrownextIcon from "../assets/homepageImages/arrownextIcon.svg";
 import "../styles/Home.css";
-import "../utilities/currency";
-import { dollar } from "../utilities/currency";
-import { useGetProductsQuery } from "../api/endpoints";
+// import { useGetProductsQuery } from "../api/endpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { loadLessProducts, loadMoreProducts } from "../reduxStore/count";
+import ItemsList from "./ItemsList";
+import FetchItems from "./FetchItems";
+import { dollar } from "../utilities/currency";
 
 function Home() {
-  const count = useSelector(state => state.counter);
-
-  const { data, isLoading, error } = useGetProductsQuery(count);
-  const [items, setItems] = useState([]); 
-
+  const items = useSelector((state) => state.items.data);
   const dispatch = useDispatch();
+  const [lessProducts, setLessProducts] = useState(false);
 
-  useEffect(() => {
-    try {
-      if (data) {
-        setItems(data.products);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [data]);
 
   return (
     <div className="home">
@@ -90,35 +79,59 @@ function Home() {
           <h3>BESTSELLER PRODUCTS</h3>
           <p>Problems trying to resolve the conflict between</p>
         </div>
-        <div className="home-section-2-products">
-          {items ? (
+        <div style={{height:'auto'}}>
+          {/* {items ? (
             items.map((item) => {
               return (
-                <div key={item.id} className="product"
-                // onClick={() => handleClick(item.id)}
-                >
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    style={{ width: "100%" }}
-                  />
-                  <h5>{item.title}</h5>
-                  <h6>{item.category}</h6>
-                  <span>
-                    <span className="product-price">{dollar.format(item.price)}</span>
-                  </span>
+                <div key={item.id} className="product">
+                  <Link to={`/productdetails/${item.id}`}>
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      style={{ width: "100%" }}
+                      className="product-img"
+                    />
+                    <h5>{item.title}</h5>
+                    <h6>{item.category}</h6>
+                    <span>
+                      <span className="product-price">
+                        {dollar.format(item.price)}
+                      </span>
+                    </span>
+                  </Link>
+                  <button className="add-to-cart-btn">ADD TO CART</button>
                 </div>
               );
             })
           ) : error ? (
-            <>An error occurred loading the products</>
+            <div>An error occurred loading the products</div>
           ) : isLoading ? (
-            <>Loading...</>) : null }
+            <div>Loading...</div>
+          ) : null} */}
+          <FetchItems/>
+          <ItemsList/>
         </div>
-        <div className="load-btns">
-          <button onClick={() => dispatch(loadLessProducts())} className="btn-2">LOAD LESS PRODUCTS</button>
-          <button onClick={() => dispatch(loadMoreProducts())}>LOAD MORE PRODUCTS</button>
-         </div>
+        {items && (
+          <div className="load-btns">
+            <button
+              className="load-more-less-btn"
+              onClick={() => {
+                dispatch(loadMoreProducts());
+                setLessProducts(true);
+              }}
+            >
+              LOAD MORE PRODUCTS
+            </button>
+            {lessProducts && (
+              <button
+                className="load-more-less-btn"
+                onClick={() => dispatch(loadLessProducts())}
+              >
+                LOAD LESS PRODUCTS
+              </button>
+            )}
+          </div>
+        )}
       </section>
       {/* this is home section 3, but has similar properties with home section 2, hence the same className */}
       <section className="home-section-2" id="home-section-3">
@@ -207,7 +220,7 @@ function Home() {
                 </span>
               </div>
               <span className="learn-more">
-                <span>Learn More</span>{" "}
+                <span>Learn More</span>
                 <img src={arrownextIcon} alt="arrow icon" />
               </span>
             </div>
@@ -263,11 +276,16 @@ function Home() {
           <h6 className="user-job">Designer</h6>
         </div>
         <div className="home-section-5-right">
-          <img src={userphotos} className="user-photos"/>
+          <img src={userphotos} className="user-photos" />
         </div>
       </section>
       <section className="home-section-6">
-        <img style={{ width: "100%" }} src={photo8} alt="Photo 8" className="last-photo" />
+        <img
+          style={{ width: "100%" }}
+          src={photo8}
+          alt="Photo 8"
+          className="last-photo"
+        />
         <div className="home-section-6-writeup">
           <h6>Designing Better Experience</h6>
           <h2>Problems trying to resolve the conflict between </h2>

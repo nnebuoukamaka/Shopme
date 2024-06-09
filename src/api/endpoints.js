@@ -3,14 +3,14 @@ import { emptyAPI } from "./baseApi";
 const endpointsAPI = emptyAPI.injectEndpoints({
     endpoints: (build) => ({
         getProducts:build.query({
-            query: (count) => `/products?limit=${count.count}`,
+            query: (count) => `/products?limit=${count}`,
     }),
-    // getSingleProduct:build.query({
-    //     query: (id) => `/products/${id}`
-    // }),
+    getSingleProduct:build.query({
+        query: (id) => `/products/${id}`
+    }),
     overrideExisting:false,
 })
 })
 
-export const {useGetProductsQuery} = endpointsAPI;
+export const {useGetProductsQuery, useGetSingleProductQuery} = endpointsAPI;
 export {endpointsAPI};

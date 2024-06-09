@@ -4,11 +4,16 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 function HomePage() {
+
+  const backgroundColor = {
+    background: 'rgba(250, 250, 250, 1)'
+  };
+
   return (
     <div>
       <NavBar />
       <Home />
-      <Footer />
+      <Footer style={backgroundColor}/>
     </div>
   );
 }

@@ -4,15 +4,16 @@ import instagramIcon from "../assets/footerImages/instagramIcon.svg";
 import xIcon from "../assets/footerImages/XIcon.svg";
 import { Link } from "react-router-dom";
 import "../styles/Footer.css";
-function Footer() {
-  const [buttonAlert, setButtonAlert] = useState(false);
-  const buttonclick = () => {
-    setButtonAlert(!buttonAlert);
-  };
+function Footer({style}) {
+          const [buttonAlert, setButtonAlert] = useState(false);
+
+          const buttonclick = () => {
+          setButtonAlert(!buttonAlert);
+            };
   return (
     <div>
       <footer className="footer">
-        <div className="upper-footer">
+        <div className="upper-footer" style={style}>
           <h3>Bandage</h3>
           <ul className="upper-footer-list">
             <li>

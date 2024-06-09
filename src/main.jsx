@@ -6,11 +6,16 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './reduxStore/configureStore.js'
+import ProductDetails from './components/ProductDetails.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App/>,
     errorElement : < NoPage />
+  },
+  {
+    path: '/productdetails/:id',
+    element: <ProductDetails/>,
   }
   
 ])
