@@ -7,6 +7,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './reduxStore/configureStore.js'
 import ProductDetails from './components/ProductDetails.jsx'
+import Cart from './components/Cart.jsx'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css"
+import LikedProducts from './components/LikedProducts.jsx'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: '/productdetails/:id',
     element: <ProductDetails/>,
+  },
+  {
+    path: '/cart',
+    element: < Cart/>,
+  },
+  {
+    path: '/favourites',
+    element: < LikedProducts/>,
   }
   
 ])
@@ -23,6 +36,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer/>
     <RouterProvider router={router}/>
     </Provider>
   </React.StrictMode>

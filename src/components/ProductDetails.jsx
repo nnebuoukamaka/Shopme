@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import arrownextIcon from "../assets/mobileviewImages/arrownextIcon.svg";
 import fullstar from "../assets/homepageImages/fullstarIcon.svg";
 import emptystar from "../assets/homepageImages/emptystarIcon.svg";
@@ -8,36 +8,44 @@ import blackEllipse from "../assets/productdetailsImages/blackEllipse.svg";
 import orangeEllipse from "../assets/productdetailsImages/orangeEllipse.svg";
 import greenEllipse from "../assets/productdetailsImages/greenEllipse.svg";
 import likeIcon from "../assets/productdetailsImages/likeIcon.svg";
+import loveIcon from "../assets/productdetailsImages/loveIcon.svg";
 import cartIcon from "../assets/productdetailsImages/cartIcon.svg";
-import seenIcon from "../assets/productdetailsImages/seenIcon.svg";
-import vector1 from '../assets/productdetailsImages/Vector1.png'
-import vector2 from '../assets/productdetailsImages/Vector2.png'
-import vector3 from '../assets/productdetailsImages/Vector3.png'
-import vector4 from '../assets/productdetailsImages/Vector4.png'
-import vector5 from '../assets/productdetailsImages/Vector5.png'
-import vector6 from '../assets/productdetailsImages/Vector6.png'
+import seenIcon from "../assets/productdetailsImages/seenicon.svg";
+import vector1 from "../assets/productdetailsImages/Vector1.png";
+import vector2 from "../assets/productdetailsImages/Vector2.png";
+import vector3 from "../assets/productdetailsImages/Vector3.png";
+import vector4 from "../assets/productdetailsImages/Vector4.png";
+import vector5 from "../assets/productdetailsImages/Vector5.png";
+import vector6 from "../assets/productdetailsImages/Vector6.png";
 import { useGetSingleProductQuery } from "../api/endpoints";
 import { dollar } from "../utilities/currency";
 import SlideShow from "./SlideShow";
-import Footer from './Footer'
+import Footer from "./Footer";
 import ItemsList from "./ItemsList";
 import "../styles/ProductDetails.css";
+import {
+  addToLikedList,
+  removeFromLikedList,
+} from "../reduxStore/likedProductsSlice";
+import { useDispatch } from "react-redux";
 
 function ProductDetails() {
   const [item, setItem] = useState({ images: [], reviews: [] });
-  const [stock, setStock] = useState("out of stock");
   const [photos, setPhotos] = useState([]);
+  const [like, setLike] = useState(true);
+  const [unlike, setUnlike] = useState(false);
   const [option, setOption] = useState("description");
   const { id } = useParams();
 
   const { data: product, error, isLoading } = useGetSingleProductQuery(id);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
       if (product) {
-        if (product.stock > 0) {
-          setStock("In stock");
-        }
+        // if (product.stock > 0) {
+        //   setStock("In stock");
+        // }
         setItem(product);
         setPhotos(product.images);
       }
@@ -47,8 +55,8 @@ function ProductDetails() {
   }, [product]);
 
   const backgroundColor = {
-    background: 'rgba(255, 255, 255, 1)'
-  }
+    background: "rgba(255, 255, 255, 1)",
+  };
 
   const handleOption = (optionName) => {
     setOption(optionName);
@@ -57,9 +65,9 @@ function ProductDetails() {
   return (
     <div className="product-component">
       <div className="product-details-nav">
-        <Link to="/" className="home-link">
+        <NavLink to="/" className="home-link">
           Home
-        </Link>
+        </NavLink>
         <img src={arrownextIcon} alt="Next" />
         <h6 className="shop">Shop</h6>
       </div>
@@ -84,7 +92,7 @@ function ProductDetails() {
                 <span>{item.reviews.length} reviews</span>
               </span>
               {dollar.format(item.price)}
-              <span>Availability: {stock}</span>
+              <span>Availability: {item.availabilityStatus}</span>
 
               <hr
                 style={{
@@ -98,11 +106,37 @@ function ProductDetails() {
                 <img src={orangeEllipse} />
                 <img src={blackEllipse} />
               </div>
-              <div className="like-cart-seen">
-                <img src={likeIcon} alt="Like" />
-                <img src={cartIcon} alt="Cart" />
-                <img src={seenIcon} alt="Seen" />
-              </div>
+              {like && (
+                <div className="like-cart-seen">
+                  <img
+                    src={likeIcon}
+                    alt="Like"
+                    onClick={() => {
+                      dispatch(addToLikedList(item)), setUnlike(!unlike);
+                      setLike(!like);
+                    }}
+                  />
+
+                  <img src={cartIcon} alt="Cart" />
+                  <img src={seenIcon} alt="Seen" />
+                </div>
+              )}
+              {unlike && (
+                <div className="like-cart-seen">
+                  <img
+                  style={{border:'1px solid'}}
+                    src={loveIcon}
+                    alt="Like"
+                    onClick={() => {
+                      dispatch(removeFromLikedList(item));
+                      setLike(!like);
+                      setUnlike(!unlike);
+                    }}
+                  />
+                   <img src={cartIcon} alt="Cart" />
+                  <img src={seenIcon} alt="Seen" />
+                </div>
+              )}
             </div>
           </div>
         ) : null}
@@ -157,18 +191,18 @@ function ProductDetails() {
       <section className="product=details-section-3">
         <h3>BEST SELLER PRODUCTS</h3>
         <div>
-          <ItemsList/>
+          <ItemsList />
         </div>
       </section>
       <section className="product-details-section-4">
-        <img src={vector1} alt="HOOLI"/>
-        <img src={vector2} alt="HOOLI"/>
-        <img src={vector3} alt="HOOLI"/>
-        <img src={vector4} alt="HOOLI"/>
-        <img src={vector5} alt="HOOLI"/>
-        <img src={vector6} alt="HOOLI"/>
+        <img src={vector1} alt="HOOLI" />
+        <img src={vector2} alt="HOOLI" />
+        <img src={vector3} alt="HOOLI" />
+        <img src={vector4} alt="HOOLI" />
+        <img src={vector5} alt="HOOLI" />
+        <img src={vector6} alt="HOOLI" />
       </section>
-      <Footer style={backgroundColor}/>
+      <Footer style={backgroundColor} />
     </div>
   );
 }

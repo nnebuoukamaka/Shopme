@@ -2,7 +2,10 @@ import React from 'react'
 
 function NoPage() {
   return (
-    <div>Opps! Seems you're lost</div>
+    <div className='no-page'>
+      <span className='h'>404</span>
+      <span className='p'>Opps! Seems you're lost!</span>
+      </div>
   )
 }
 

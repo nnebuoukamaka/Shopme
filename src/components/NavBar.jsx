@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import callIcon from "../assets/navbarImages/callIcon.svg";
 import messageIcon from "../assets/navbarImages/messageIcon.svg";
 import instagramIcon from "../assets/navbarImages/instagramIcon.svg";
@@ -10,16 +12,32 @@ import loginIcon from "../assets/navbarImages/loginIcon.svg";
 import cartIcon from "../assets/navbarImages/cartIcon.svg";
 import searchIcon from "../assets/navbarImages/searchIcon.svg";
 import likeIcon from "../assets/navbarImages/likeIcon.svg";
-import navbaroptionsicon from "../assets/navbarImages/navbaroptionsIcon.svg"
+import navbaroptionsicon from "../assets/navbarImages/navbaroptionsIcon.svg";
 import "../styles/NavBar.css";
+import { getTotal } from "../reduxStore/cartSlice";
 
 function NavBar() {
+  const cart = useSelector((state) => state.cart);
+  const likedItemsTry = useSelector((state) => state.likedProducts);
+  const likedItems = likedItemsTry.likedItems;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
 
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
-  const handleMenu = () =>{
-    setMenu(!menu)
-  }
+  const goToCart = () => {
+    navigate("/cart");
+  };
+  const goToFavourites = () => {
+    navigate("/favourites");
+  };
+
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
 
   return (
     <header className="header-main">
@@ -80,35 +98,35 @@ function NavBar() {
             <li>
               <img src={searchIcon} className="search-icon" />
             </li>
-            <li style={{ display: "flex", columnGap: "3px" }}>
+            <li
+              onClick={goToCart}
+              style={{ display: "flex", columnGap: "3px", cursor: "pointer" }}
+            >
               <img src={cartIcon} className="cart-icon" />
-              <span className="cart-counter">1</span>
+              <span className="cart-counter">{cart.cartTotalQuantity}</span>
             </li>
             <li
               className="like-icon"
+              onClick={goToFavourites}
+              style={{ display: "flex", columnGap: "3px", cursor: "pointer" }}
             >
               <img src={likeIcon} />
-              <span>1</span>
+              <span>{likedItems.length}</span>
             </li>
-            <li
-              className="navbar-options-icon"
-              onClick={handleMenu}
-            >
+            <li className="navbar-options-icon" onClick={handleMenu}>
               <img src={navbaroptionsicon} />
-             
             </li>
           </ul>
-          
         </div>
       </nav>
-      {menu && 
-          <div className="navbar-options">
-                <div>Home</div>
-                <div>Product</div>
-                <div>Pricing</div>
-                <div>Contact</div>
-          </div>
-          }
+      {menu && (
+        <div className="navbar-options">
+          <div>Home</div>
+          <div>Product</div>
+          <div>Pricing</div>
+          <div>Contact</div>
+        </div>
+      )}
     </header>
   );
 }

@@ -18,7 +18,6 @@ import clockIcon from "../assets/homepageImages/clockIcon.svg";
 import commentIcon from "../assets/homepageImages/commentIcon.svg";
 import arrownextIcon from "../assets/homepageImages/arrownextIcon.svg";
 import "../styles/Home.css";
-// import { useGetProductsQuery } from "../api/endpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { loadLessProducts, loadMoreProducts } from "../reduxStore/count";
 import ItemsList from "./ItemsList";
@@ -80,34 +79,7 @@ function Home() {
           <p>Problems trying to resolve the conflict between</p>
         </div>
         <div style={{height:'auto'}}>
-          {/* {items ? (
-            items.map((item) => {
-              return (
-                <div key={item.id} className="product">
-                  <Link to={`/productdetails/${item.id}`}>
-                    <img
-                      src={item.thumbnail}
-                      alt={item.title}
-                      style={{ width: "100%" }}
-                      className="product-img"
-                    />
-                    <h5>{item.title}</h5>
-                    <h6>{item.category}</h6>
-                    <span>
-                      <span className="product-price">
-                        {dollar.format(item.price)}
-                      </span>
-                    </span>
-                  </Link>
-                  <button className="add-to-cart-btn">ADD TO CART</button>
-                </div>
-              );
-            })
-          ) : error ? (
-            <div>An error occurred loading the products</div>
-          ) : isLoading ? (
-            <div>Loading...</div>
-          ) : null} */}
+          
           <FetchItems/>
           <ItemsList/>
         </div>

@@ -1,12 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart} from '../reduxStore/cartSlice'
 import { Link } from 'react-router-dom'
 import { dollar } from "../utilities/currency"
 import '../styles/Home.css'
 
 function ItemsList() {
     const items = useSelector((state) => state.items.data);
-
+    // const cartItems = useSelector((state) => state.cart.cartItems)
+    const dispatch = useDispatch();
+    // console.log(cartItems)
   return (
     <div className='home-section-2-products'>
         {items && (
@@ -28,11 +31,12 @@ function ItemsList() {
                       </span>
                     </span>
                   </Link>
-                  <button className="add-to-cart-btn">ADD TO CART</button>
+                  <button onClick = {() => dispatch(addToCart(item))} 
+                  className="add-to-cart-btn">ADD TO CART</button>
                 </div>
               );
             })
-          ) }
+          )}
     </div>
    )
 }
