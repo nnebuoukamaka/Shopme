@@ -6,16 +6,20 @@ import { dollar } from "../utilities/currency"
 import '../styles/Home.css'
 
 function ItemsList() {
-    const items = useSelector((state) => state.items.data);
-    // const cartItems = useSelector((state) => state.cart.cartItems)
-    const dispatch = useDispatch();
-    // console.log(cartItems)
+  const dispatch = useDispatch();
+  const newItems = useSelector((state) => state.items.data);
+  const items = newItems.map(newItem => ({
+    ...newItem, love:false
+  }));
+  
   return (
     <div className='home-section-2-products'>
         {items && (
             items.map((item) => {
               return (
-                <div key={item.id} className="product">
+                <div key={item.id} className="product"
+                
+                >
                   <Link to={`/productdetails/${item.id}`} >
                     <img
                       src={item.thumbnail}

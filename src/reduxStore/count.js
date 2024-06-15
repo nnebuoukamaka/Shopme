@@ -29,7 +29,7 @@ reducers:{
             state.count = 10
         } else
         state.count -= 10;
-    }
+    },
 }
 });
 export const {setItems, setError, setStatus, loadMoreProducts, loadLessProducts} = itemsSlice.actions;

@@ -10,8 +10,7 @@ import ProductDetails from './components/ProductDetails.jsx'
 import Cart from './components/Cart.jsx'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import LikedProducts from './components/LikedProducts.jsx'
-
+import FavoritesList from './components/Favorites.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/favourites',
-    element: < LikedProducts/>,
+    element: < FavoritesList/>,
   }
   
 ])

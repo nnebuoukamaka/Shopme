@@ -24,30 +24,41 @@ import Footer from "./Footer";
 import ItemsList from "./ItemsList";
 import "../styles/ProductDetails.css";
 import {
-  addToLikedList,
-  removeFromLikedList,
-} from "../reduxStore/likedProductsSlice";
-import { useDispatch } from "react-redux";
+  addToFavorites,
+  removeFromFavorites,
+} from "../reduxStore/favoritesSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetails() {
   const [item, setItem] = useState({ images: [], reviews: [] });
   const [photos, setPhotos] = useState([]);
-  const [like, setLike] = useState(true);
-  const [unlike, setUnlike] = useState(false);
   const [option, setOption] = useState("description");
   const { id } = useParams();
 
   const { data: product, error, isLoading } = useGetSingleProductQuery(id);
+  const favoriteItems = useSelector((state) => state.favorites.favoriteItems);
   const dispatch = useDispatch();
+  const likedItem = item.love;
 
   useEffect(() => {
     try {
       if (product) {
-        // if (product.stock > 0) {
-        //   setStock("In stock");
-        // }
-        setItem(product);
-        setPhotos(product.images);
+        const itemIndex = favoriteItems.findIndex(
+          (favoriteItem) => favoriteItem.id === product.id
+        );
+        if (itemIndex >= 0) {
+          setItem({ ...product, love: true });
+          setPhotos(product.images);
+        } else {
+          // setItem({...product, love: false});
+          setItem(product);
+          setPhotos(product.images);
+        }
+        // const modifiedProduct = { ...product, love: false };
+        // setItem(modifiedProduct);
+        // setPhotos(modifiedProduct.images);
+        // setItem(product);
+        // setPhotos(product.images)
       }
     } catch (error) {
       console.log(error);
@@ -60,6 +71,16 @@ function ProductDetails() {
 
   const handleOption = (optionName) => {
     setOption(optionName);
+  };
+
+  const handleAddTofavorites = (item) => {
+    setItem({ ...item, love: true });
+    dispatch(addToFavorites(item));
+  };
+
+  const handleRemoveFromFavorites = (item) => {
+    setItem({ ...item, love: false });
+    dispatch(removeFromFavorites(item));
   };
 
   return (
@@ -106,34 +127,26 @@ function ProductDetails() {
                 <img src={orangeEllipse} />
                 <img src={blackEllipse} />
               </div>
-              {like && (
+              {likedItem === true ? (
                 <div className="like-cart-seen">
                   <img
-                    src={likeIcon}
+                    src={loveIcon}
                     alt="Like"
-                    onClick={() => {
-                      dispatch(addToLikedList(item)), setUnlike(!unlike);
-                      setLike(!like);
-                    }}
+                    onClick={() => handleRemoveFromFavorites(item)}
                   />
 
                   <img src={cartIcon} alt="Cart" />
                   <img src={seenIcon} alt="Seen" />
                 </div>
-              )}
-              {unlike && (
+              ) : (
                 <div className="like-cart-seen">
                   <img
-                  style={{border:'1px solid'}}
-                    src={loveIcon}
+                    style={{ cursor: "pointer" }}
+                    src={likeIcon}
                     alt="Like"
-                    onClick={() => {
-                      dispatch(removeFromLikedList(item));
-                      setLike(!like);
-                      setUnlike(!unlike);
-                    }}
+                    onClick={() => handleAddTofavorites(item)}
                   />
-                   <img src={cartIcon} alt="Cart" />
+                  <img src={cartIcon} alt="Cart" />
                   <img src={seenIcon} alt="Seen" />
                 </div>
               )}

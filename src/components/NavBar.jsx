@@ -18,8 +18,9 @@ import { getTotal } from "../reduxStore/cartSlice";
 
 function NavBar() {
   const cart = useSelector((state) => state.cart);
-  const likedItemsTry = useSelector((state) => state.likedProducts);
-  const likedItems = likedItemsTry.likedItems;
+  const favorites = useSelector((state) => state.favorites);
+  const totalFavorites = favorites.favoriteItems;
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTotal());
@@ -111,7 +112,7 @@ function NavBar() {
               style={{ display: "flex", columnGap: "3px", cursor: "pointer" }}
             >
               <img src={likeIcon} />
-              <span>{likedItems.length}</span>
+              <span>{totalFavorites.length}</span>
             </li>
             <li className="navbar-options-icon" onClick={handleMenu}>
               <img src={navbaroptionsicon} />
